@@ -16,7 +16,6 @@ const signup = async (req, res) => {
         email: user.email,
       },
     });
-
   } catch (error) {
     console.error(error.message);
 
@@ -43,7 +42,6 @@ const login = async (req, res) => {
         email: user.email,
       },
     });
-
   } catch (error) {
     console.error(error.message);
     return res.status(400).json({ msg: error.message });
@@ -51,6 +49,6 @@ const login = async (req, res) => {
 };
 
 module.exports = {
-    signup,
-    login,
+  signup,
+  login,
 };

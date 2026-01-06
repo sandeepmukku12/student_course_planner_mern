@@ -1,8 +1,8 @@
 const bcrypt = require("bcryptjs");
-const User = require("../models/User");
+const { User } = require("../models");
 
 const createUser = async (userBody) => {
-  console.log("REQ BODY:", userBody);
+  // console.log("REQ BODY:", userBody);
 
   const { name, email, password } = userBody;
 
@@ -23,6 +23,6 @@ const createUser = async (userBody) => {
   return user;
 };
 
-module.exports = { 
-    createUser,
+module.exports = {
+  createUser,
 };
