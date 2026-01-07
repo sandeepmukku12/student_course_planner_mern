@@ -15,7 +15,8 @@ const getStudyGroups = async (req, res) => {
 // Create study group
 const createStudyGroup = async (req, res) => {
     try {
-        const group = await studyGroupService.addNewStudyGroup(req.body);
+        const userId = req.user.id;
+        const group = await studyGroupService.addNewStudyGroup(userId, req.body);
 
         return res.status(201).json(group);
     } catch (error) {

@@ -1,14 +1,15 @@
 const express = require("express");
 const { studyGroupController } = require("../controllers");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 const router = express.Router();
 
-router.get("/", studyGroupController.getStudyGroups);
+router.get("/", authMiddleware, studyGroupController.getStudyGroups);
 
-router.post("/", studyGroupController.createStudyGroup);
+router.post("/", authMiddleware, studyGroupController.createStudyGroup);
 
-router.put("/:id/join", studyGroupController.joinGroup);
+router.put("/:id/join", authMiddleware, studyGroupController.joinGroup);
 
-router.put("/:id/leave", studyGroupController.leaveGroup);
+router.put("/:id/leave", authMiddleware, studyGroupController.leaveGroup);
 
 module.exports = router;
