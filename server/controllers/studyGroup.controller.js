@@ -3,7 +3,8 @@ const { studyGroupService } = require("../services");
 // Get all study groups
 const getStudyGroups = async (req, res, next) => {
     try {
-        const groups = await studyGroupService.getAllStudyGroups(req.query);
+        const filters = req.query; // course, language, skillLevel
+        const groups = await studyGroupService.getAllStudyGroups(filters);
 
         return res.status(200).json(groups);
     } catch (error) {

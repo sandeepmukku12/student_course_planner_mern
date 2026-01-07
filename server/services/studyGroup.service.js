@@ -1,8 +1,23 @@
 const { StudyGroup } = require("../models");
 
 // Get all study groups
-const getAllStudyGroups = async (filters = {}) => {
-  const groups = await StudyGroup.find(filters)
+const getAllStudyGroups = async (filters) => {
+  const query = {};
+
+  // Only add filters if provided
+  if (filters.course) {
+    query.course = filters.course;
+  }
+
+  if (filters.language) {
+    query.language = { $regex: new RegExp(filters.language, "i") }; // case-insensitive match
+  }
+
+  if (filters.skillLevel) {
+    query.skillLevel = filters.skillLevel;
+  }
+
+  const groups = await StudyGroup.find(query)
     .populate("course")
     .populate("members", "name email");
 
