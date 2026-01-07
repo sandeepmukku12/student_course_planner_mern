@@ -23,20 +23,61 @@ const getAllStudyGroups = async (filters) => {
     query.skillLevel = filters.skillLevel;
   }
 
+  /* Pagination */
+  let page = parseInt(filters.page, 10);
+  let limit = parseInt(filters.limit, 10);
+
+  if (isNaN(page) || page < 1) page = 1;
+  if (isNaN(limit) || limit < 1) limit = 10;
+
+  // Count total documents
+  const total = await StudyGroup.countDocuments(query);
+  const totalPages = Math.ceil(total / limit);
+
+  // Clamp page to last page
+  if (page > totalPages && totalPages > 0) {
+    page = totalPages;
+  }
+    
+  // Calculate skip safely
+  const skip = (page - 1) * limit;
+
+  /* Sorting */
+  let sort = { createdAt: -1 }; //default
+
+  if (filters.sortBy) {
+    const order = filters.order === "asc" ? 1 : -1;
+    sort = { [filters.sortBy]: order };
+  }
+
   let mongooseQuery = StudyGroup.find(query)
-    .populate("course", "name code")
-    .populate("members", "name email");
+    .populate("course")
+    .populate("members", "name email")
+    .skip(skip)
+    .limit(limit);
 
   // Apply text score ONLY if search exists
+  /* If text search → sort by relevance first */
   if (filters.search) {
     mongooseQuery = mongooseQuery
       .select({ score: { $meta: "textScore" } })
       .sort({ score: { $meta: "textScore" } });
+  } else {
+    mongooseQuery = mongooseQuery.sort(sort);
   }
 
+  /* Execute queries */
   const groups = await mongooseQuery;
 
-  return groups;
+  return {
+    data: groups,
+    pagination: {
+      total,
+      page,
+      limit,
+      totalPages,
+    },
+  };
 };
 
 // Create study group

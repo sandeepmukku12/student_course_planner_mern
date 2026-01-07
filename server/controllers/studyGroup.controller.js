@@ -4,9 +4,9 @@ const { studyGroupService } = require("../services");
 const getStudyGroups = async (req, res, next) => {
     try {
         const filters = req.query; // course, language, skillLevel
-        const groups = await studyGroupService.getAllStudyGroups(filters);
+        const result = await studyGroupService.getAllStudyGroups(filters);
 
-        return res.status(200).json(groups);
+        return res.status(200).json(result);
     } catch (error) {
         next(error);
     }
