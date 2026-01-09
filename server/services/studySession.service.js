@@ -2,9 +2,11 @@ const { StudySession, StudyGroup } = require("../models");
 
 // Create session
 const addNewStudySession = async (userId, studySessionBody) => {
-  const { group, date, topic } = studySessionBody;
+  const { groupId, date, topic, startTime, duration } = studySessionBody;
 
-  const groupData = await StudyGroup.findById(group);
+  const groupData = await StudyGroup.findById(groupId)
+    .populate("course", "name code")
+    .populate("members", "_id");
 
   if (!groupData) {
     const error = new Error("Study group not found");
@@ -12,7 +14,7 @@ const addNewStudySession = async (userId, studySessionBody) => {
     throw error;
   }
 
-  if (!groupData.members.includes(userId)) {
+  if (!groupData.members.some(m => m._id.toString() === userId)) {
     const error = new Error(
       "You are not allowed to create sessions for this group"
     );
@@ -21,9 +23,11 @@ const addNewStudySession = async (userId, studySessionBody) => {
   }
 
   const session = new StudySession({
-    group,
+    group: groupId,
     date,
     topic,
+    startTime,
+    duration,
     createdBy: userId,
   });
 
@@ -43,7 +47,9 @@ const getSessionsByGroupByGroupId = async (userId, groupId) => {
   }
 
   if (!group.members.includes(userId)) {
-    const error = new Error("You are not allowed to access the sessions of this group");
+    const error = new Error(
+      "You are not allowed to access the sessions of this group"
+    );
     error.statusCode = 403;
     throw error;
   }

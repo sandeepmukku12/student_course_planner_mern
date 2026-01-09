@@ -13,6 +13,12 @@ const studySessionSchema = new mongoose.Schema({
     topic : {
         type: String,
     },
+    startTime: {
+        type: String,
+    },
+    duration: {
+        type: Number,
+    },
 }, { timestamps: true });
 
 const StudySession = mongoose.model("StudySession", studySessionSchema);
