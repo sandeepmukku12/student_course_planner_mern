@@ -38,7 +38,7 @@ const getAllStudyGroups = async (filters) => {
   if (page > totalPages && totalPages > 0) {
     page = totalPages;
   }
-    
+
   // Calculate skip safely
   const skip = (page - 1) * limit;
 
@@ -143,9 +143,18 @@ const leaveGroupById = async (userId, groupId) => {
   return group;
 };
 
+const getGroupById = async (groupId) => {
+  const group = await StudyGroup.findById(groupId)
+    .populate("course", "name code")
+    .populate("members", "name email");
+
+  return group;
+};
+
 module.exports = {
   getAllStudyGroups,
   addNewStudyGroup,
   joinGroupById,
   leaveGroupById,
+  getGroupById,
 };

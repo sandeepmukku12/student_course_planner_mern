@@ -12,4 +12,6 @@ router.put("/:id/join", authMiddleware, studyGroupController.joinGroup);
 
 router.put("/:id/leave", authMiddleware, studyGroupController.leaveGroup);
 
+router.get("/:id", authMiddleware, studyGroupController.getStudyGroupById);
+
 module.exports = router;

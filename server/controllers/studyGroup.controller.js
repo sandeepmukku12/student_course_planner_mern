@@ -52,10 +52,26 @@ const leaveGroup = async (req, res, next) => {
     }
 };
 
+// Get group by id
+const getStudyGroupById = async (req, res, next) => {
+  try {
+    const group = await studyGroupService.getGroupById(req.params.id);
+
+    if (!group) {
+      return res.status(404).json({ msg: "Study group not found" });
+    }
+
+    res.status(200).json(group);
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 module.exports = {
     getStudyGroups,
     createStudyGroup,
     joinGroup,
     leaveGroup,
+    getStudyGroupById,
 };

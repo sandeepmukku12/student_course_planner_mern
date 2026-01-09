@@ -15,8 +15,10 @@ import {
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 const StudyGroupsPage = () => {
+  const navigate = useNavigate();
   const [groups, setGroups] = useState([]);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState(null);
@@ -134,9 +136,11 @@ const StudyGroupsPage = () => {
           {groups.map((group) => (
             <Grid item xs={12} sm={6} md={4} key={group._id}>
               <Card
+                onClick={() => navigate(`/study-groups/${group._id}`)}
                 sx={{
                   height: "100%",
                   borderRadius: 3,
+                  cursor: "pointer",
                   transition: "0.3s",
                   "&:hover": {
                     transform: "translateY(-6px)",
@@ -163,7 +167,10 @@ const StudyGroupsPage = () => {
                   <Button
                     fullWidth
                     variant="contained"
-                    onClick={() => handleJoin(group._id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleJoin(group._id);
+                    }}
                   >
                     Join
                   </Button>
@@ -172,7 +179,10 @@ const StudyGroupsPage = () => {
                     fullWidth
                     variant="outlined"
                     color="error"
-                    onClick={() => handleLeave(group._id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleLeave(group._id);
+                    }}
                   >
                     Leave
                   </Button>
