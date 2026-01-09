@@ -4,6 +4,7 @@ import Signup from "./pages/Signup";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DashboardLayout from "./dashboard/DashboardLayout";
+import StudyGroupsPage from "./pages/StudyGroups";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <ToastContainer position="top-right" />
       <Routes>
         <Route path="/dashboard" element={<DashboardLayout />}/>
+        <Route path="/study-groups" element={<StudyGroupsPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
