@@ -8,7 +8,6 @@ import StudyGroupsPage from "./pages/StudyGroups";
 import Courses from "./pages/Courses";
 import StudyGroupDetails from "./pages/StudyGroupDetails";
 import ProtectedRoute from "./components/ProtectedRoute";
-import StudySessionList from "./components/StudySessionList";
 import ProfilePage from "./pages/ProfilePage";
 import CourseDetailsPage from "./pages/CourseDetailsPage";
 import PlannerPage from "./pages/Planner";

@@ -10,7 +10,7 @@ const AuthLayout = ({ children, title }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)", // subtle gradient
+        background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
       }}
     >
       <Grid item xs={11} sm={8} md={5} lg={4}>

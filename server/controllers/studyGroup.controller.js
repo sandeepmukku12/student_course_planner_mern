@@ -2,55 +2,55 @@ const { studyGroupService } = require("../services");
 
 // Get all study groups
 const getStudyGroups = async (req, res, next) => {
-    try {
-        const userId = req.user.id;
-        const filters = req.query; // course, language, skillLevel
-        const result = await studyGroupService.getAllStudyGroups(filters, userId);
+  try {
+    const userId = req.user.id;
+    const filters = req.query; // course, language, skillLevel
+    const result = await studyGroupService.getAllStudyGroups(filters, userId);
 
-        return res.status(200).json(result);
-    } catch (error) {
-        next(error);
-    }
+    return res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
 };
 
 // Create study group
 const createStudyGroup = async (req, res, next) => {
-    try {
-        const userId = req.user.id;
-        const group = await studyGroupService.addNewStudyGroup(userId, req.body);
+  try {
+    const userId = req.user.id;
+    const group = await studyGroupService.addNewStudyGroup(userId, req.body);
 
-        return res.status(201).json(group);
-    } catch (error) {
-        next(error);
-    }
+    return res.status(201).json(group);
+  } catch (error) {
+    next(error);
+  }
 };
 
 // Join group
 const joinGroup = async (req, res, next) => {
-    try {
-        const userId = req.user.id;
-        const groupId = req.params.id;
+  try {
+    const userId = req.user.id;
+    const groupId = req.params.id;
 
-        const group = await studyGroupService.joinGroupById(userId, groupId);
+    const group = await studyGroupService.joinGroupById(userId, groupId);
 
-        return res.status(200).json(group);
-    } catch (error) {
-        next(error);
-    }
+    return res.status(200).json(group);
+  } catch (error) {
+    next(error);
+  }
 };
 
 // Leave group
 const leaveGroup = async (req, res, next) => {
-    try {
-        const userId = req.user.id;
-        const groupId = req.params.id;
+  try {
+    const userId = req.user.id;
+    const groupId = req.params.id;
 
-        const group = await studyGroupService.leaveGroupById(userId, groupId);
+    const group = await studyGroupService.leaveGroupById(userId, groupId);
 
-        return res.status(200).json(group);
-    } catch (error) {
-        next(error);
-    }
+    return res.status(200).json(group);
+  } catch (error) {
+    next(error);
+  }
 };
 
 // Get group by id
@@ -68,11 +68,25 @@ const getStudyGroupById = async (req, res, next) => {
   }
 };
 
+const deleteStudyGroup = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const groupId = req.params.id;
+    await studyGroupService.deleteStudyGroupById(userId, groupId);
+
+    return res
+      .status(200)
+      .json({ msg: "Study group and all its sessions removed" });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
-    getStudyGroups,
-    createStudyGroup,
-    joinGroup,
-    leaveGroup,
-    getStudyGroupById,
+  getStudyGroups,
+  createStudyGroup,
+  joinGroup,
+  leaveGroup,
+  getStudyGroupById,
+  deleteStudyGroup,
 };

@@ -92,12 +92,34 @@ const addNewStudyGroup = async (userId, studyGroupBody) => {
     course,
     language,
     skillLevel,
+    creator: userId,
     members: [userId],
   });
 
   await group.save();
 
   return group;
+};
+
+/* Delete Group: Check ownership before deleting */
+const deleteStudyGroupById = async (userId, groupId) => {
+  const group = await StudyGroup.findById(groupId);
+
+  if (!group) {
+    const error = new Error("Study group not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  // Permission Check: Only creator can delete
+  if (group.creator.toString() !== userId) {
+    const error = new Error("Only the creator can delete this group");
+    error.statusCode = 403;
+    throw error;
+  }
+
+  await StudyGroup.findByIdAndDelete(groupId); // Triggers the 'pre' middleware
+  return true;
 };
 
 // Join group
@@ -156,6 +178,7 @@ const getGroupById = async (groupId) => {
 module.exports = {
   getAllStudyGroups,
   addNewStudyGroup,
+  deleteStudyGroupById,
   joinGroupById,
   leaveGroupById,
   getGroupById,

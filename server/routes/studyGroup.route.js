@@ -14,4 +14,6 @@ router.put("/:id/leave", authMiddleware, studyGroupController.leaveGroup);
 
 router.get("/:id", authMiddleware, studyGroupController.getStudyGroupById);
 
+router.delete("/:id", authMiddleware, studyGroupController.deleteStudyGroup);
+
 module.exports = router;

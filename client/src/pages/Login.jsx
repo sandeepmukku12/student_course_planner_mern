@@ -13,7 +13,6 @@ import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
-
 const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -49,7 +48,7 @@ const LoginPage = () => {
           name="email"
           type="email"
           value={form.email}
-          onChange={handleChange}          
+          onChange={handleChange}
           fullWidth
           required
           margin="normal"

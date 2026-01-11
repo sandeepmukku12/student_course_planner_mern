@@ -12,6 +12,10 @@ router.get(
   studySessionController.getSessionsByGroup
 );
 
-router.delete("/:sessionId", authMiddleware, studySessionController.deleteSession);
+router.delete(
+  "/:sessionId",
+  authMiddleware,
+  studySessionController.deleteSession
+);
 
 module.exports = router;

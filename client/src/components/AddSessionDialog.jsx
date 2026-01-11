@@ -17,6 +17,7 @@ const AddSessionDialog = ({ open, onClose, groupId, onCreated }) => {
     date: "",
     startTime: "",
     duration: "",
+    location: "",
   });
 
   const handleChange = (e) =>
@@ -34,6 +35,7 @@ const AddSessionDialog = ({ open, onClose, groupId, onCreated }) => {
         date: "",
         startTime: "",
         duration: "",
+        location: "",
       });
 
       toast.success("Study session scheduled");
@@ -86,6 +88,15 @@ const AddSessionDialog = ({ open, onClose, groupId, onCreated }) => {
             onChange={handleChange}
             fullWidth
             required
+          />
+          <TextField
+            label="Location / Platform"
+            name="location"
+            placeholder="e.g. Library Room 204 or Discord"
+            fullWidth
+            sx={{ mt: 2 }}
+            value={form.location}
+            onChange={handleChange}
           />
         </Stack>
       </DialogContent>

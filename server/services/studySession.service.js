@@ -2,11 +2,10 @@ const { StudySession, StudyGroup } = require("../models");
 
 // Create session
 const addNewStudySession = async (userId, studySessionBody) => {
-  const { groupId, date, topic, startTime, duration } = studySessionBody;
+  const { groupId, date, topic, startTime, duration, location } =
+    studySessionBody;
 
-  const groupData = await StudyGroup.findById(groupId)
-    .populate("course", "name code")
-    .populate("members", "_id");
+  const groupData = await StudyGroup.findById(groupId);
 
   if (!groupData) {
     const error = new Error("Study group not found");
@@ -14,10 +13,9 @@ const addNewStudySession = async (userId, studySessionBody) => {
     throw error;
   }
 
-  if (!groupData.members.some(m => m._id.toString() === userId)) {
-    const error = new Error(
-      "You are not allowed to create sessions for this group"
-    );
+  // Check membership directly
+  if (!groupData.members.includes(userId)) {
+    const error = new Error("You must join the group to create sessions");
     error.statusCode = 403;
     throw error;
   }
@@ -28,11 +26,11 @@ const addNewStudySession = async (userId, studySessionBody) => {
     topic,
     startTime,
     duration,
-    createdBy: userId,
+    location,
+    creator: userId,
   });
 
   await session.save();
-
   return session;
 };
 
@@ -71,13 +69,14 @@ const removeStudySessionById = async (userId, sessionId) => {
     throw error;
   }
 
-  // Check if group exists and if user is a member to allow deletion
+  // Permission Check: Only session creator or group host can delete
   const group = await StudyGroup.findById(session.group);
-  
-  if (!group || !group.members.includes(userId)) {
-    const error = new Error(
-      "You do not have permission to delete this session"
-    );
+
+  const isSessionCreator = session.creator.toString() === userId;
+  const isGroupHost = group?.creator.toString() === userId;
+
+  if (!isSessionCreator && !isGroupHost) {
+    const error = new Error("Permission denied");
     error.statusCode = 403;
     throw error;
   }
