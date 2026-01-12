@@ -15,7 +15,7 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 - [📦 Installation & Setup](#-installation--setup)
 - [🚀 Usage](#-usage)
 - [🏗 App Structure](#-app-structure)
-- [🔌 API Reference](#-api-reference)
+- [🗂 Key Files](#-key-files)
 - [🗺️ Application Map](#-application-map)
 - [🛡️ Security & Rules](#-security--rules)
 - [🏛️ System Architecture](#-system-architecture)
@@ -153,7 +153,7 @@ study-flux/
 │ │ ├─ pages/ # Page components (Login, Signup, Courses, Study Groups, Planner, Profile, Resources)
 │ │ ├─ routes/ # React Router routes
 │ │ ├─ api/ # API calls using Axios
-│ │ └─ context/ # React context for global state (auth, courses, groups)
+│ │ └─ context/ # React context for global state (auth)
 │ └─ .env # Environment variables (DB URI, JWT secret)
 |
 ├─ server/ # Backend built with Node.js + Express
@@ -166,5 +166,43 @@ study-flux/
 │
 └─ README.md # Project documentation
 ```
+
+---
+
+## 🗂 Key Files
+
+Here are the important files in the Study Flux project and their purposes:
+
+---
+
+### 🖥️ Frontend (`client/`)
+- `src/App.jsx` – Main React component that wraps all pages and routes.  
+- `src/main.jsx` – Entry point for the React + Vite app.  
+- `src/components/` – Reusable UI components like buttons, cards, and modals.  
+- `src/pages/` – Individual pages (Dashboard, Courses, Study Groups, Planner, Profile, Resources).    
+- `src/services/` – Handles API calls to the backend using Axios.  
+- `src/context/` – Global state management for auth.  
+
+---
+
+### ⚙️ Backend (`server/`)
+- `index.js` – Entry point for the Express backend server and MongoDB connection setup.  
+- `.env` – Stores environment variables like `PORT`, `MONGODB_URI`, and `JWT_SECRET`.  .  
+- `controllers/` – Handle incoming requests and interact with services.  
+  - `auth.controller.js` – Signup/Login endpoints.  
+  - `user.controller.js` – Profile endpoints.  
+  - `course.controller.js` – Course CRUD and enrollment logic.  
+  - `studyGroup.controller.js` – Study group CRUD, join/leave, search.  
+  - `studySession.controller.js` – Study session scheduling and retrieval.  
+- `models/` – Mongoose schemas for Users, Courses, StudyGroups, and StudySessions.  
+- `routes/` – API endpoint definitions.  
+- `services/` – Business logic separate from controllers.  
+- `middleware/` – JWT authentication and centralized error handling.  
+
+---
+
+### 🏠 Root Files
+- `README.md` – Project documentation.  
+- `.env` – Environment variables for backend configuration.
 
 ---
