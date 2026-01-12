@@ -17,7 +17,7 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 - [🏗 App Structure](#-app-structure)
 - [🗂 Key Files](#-key-files)
 - [🔐 Security & Rules](#-security--rules)
-- [🏛️ System Architecture](#-system-architecture)
+- [⚙️ System Architecture](#-system-architecture)
 - [🗃️ Database Schema & Relationships](#-database-schema--relationships)
 - [📈 Future Enhancements](#-future-enhancements)
 - [❤️ Built With Love](#-built-with-love)
@@ -205,5 +205,31 @@ Here are the important files in the Study Flux project and their purposes:
 - 🔄 **Cascade Deletion**: When a study group is deleted, all related study sessions are automatically removed from the database.  
 - 🔒 **Protected Routes**: Both frontend routes and backend controllers are secured with JWT authentication.
 - 👤 **Ownership Verification**: Users can only modify or delete content that they created, ensuring proper access control.
+
+---
+
+## ⚙️ System Architecture
+
+The application follows a classic **client-server architecture**. The React frontend communicates with the Node.js/Express backend via a **RESTful API**, secured using **JWT authentication**.
+
+---
+
+## 🗃️ Database Schema & Relationships
+
+### Schema
+
+- **User**: name, email, password, enrolled courses
+- **Course**: name, code, description
+- **StudyGroup**: name, course reference, members, creator
+- **StudySession**: topic, date/time, duration, group reference, creator
+
+Study Flux uses a relational approach within MongoDB to handle the complex dependencies between users, courses, and collaborative sessions.
+
+### Logic Highlights
+
+- 🔁 **User ↔ Course** – Many-to-Many relationship to support course enrollment.  
+- 📘 **Course ↔ Study Group** – One-to-Many relationship where each course can have multiple study groups.  
+- 📅 **Study Group ↔ Study Session** – One-to-Many relationship with cascade delete logic for automatic cleanup.  
+- 👤 **Ownership Rules** – Both `StudyGroup` and `StudySession` store a `creator` field to enforce permission-based actions.
 
 ---
