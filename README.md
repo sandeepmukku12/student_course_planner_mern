@@ -16,7 +16,6 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 - [🚀 Usage](#-usage)
 - [🏗 App Structure](#-app-structure)
 - [🗂 Key Files](#-key-files)
-- [🗺️ Application Map](#-application-map)
 - [🛡️ Security & Rules](#-security--rules)
 - [🏛️ System Architecture](#-system-architecture)
 - [🗃️ Database Schema & Relationships](#-database-schema--relationships)
@@ -198,5 +197,13 @@ Here are the important files in the Study Flux project and their purposes:
 ### 🏠 Root Files
 - `README.md` – Project documentation.  
 - `.env` – Environment variables for backend configuration.
+
+---
+
+## 🛡️ Security & Rules
+
+- 🔄 **Cascade Deletion**: When a study group is deleted, all related study sessions are automatically removed from the database.  
+- 🔒 **Protected Routes**: Both frontend routes and backend controllers are secured with JWT authentication.
+- 👤 **Ownership Verification**: Users can only modify or delete content that they created, ensuring proper access control.
 
 ---
