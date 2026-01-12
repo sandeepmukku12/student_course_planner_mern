@@ -8,7 +8,7 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 
 ## 📚 Table of Contents
 
-- [🛠️ Tech Stack](#tech-stack)
+- [🛠️ Tech Stack](#--tech-stack)
 - [✨ Features](#-features)
 - [🎨 UI Highlights](#-ui-highlights)
 - [🖼️ Screenshots](#-screenshots)
