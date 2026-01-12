@@ -318,6 +318,14 @@ Study Flux uses a relational approach within MongoDB to handle the complex depen
 
 ---
 
+## 📄 License
+
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+This project is licensed under the **MIT License**. See the LICENSE file for more info.
+
+---
+
 ## ❤️ Built With Love
 
 **Study Flux** was built with ❤️ by Sandeep Mukku  
