@@ -6,6 +6,12 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 
 ---
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)
+![Author](https://img.shields.io/badge/Author-Sandeep-Mukku-orange.svg)
+
+---
+
 ## 📚 Table of Contents
 
 - [🧰 Tech Stack](#-tech-stack)
@@ -319,8 +325,6 @@ Study Flux uses a relational approach within MongoDB to handle the complex depen
 ---
 
 ## 📄 License
-
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 This project is licensed under the **MIT License**. See the LICENSE file for more info.
 
