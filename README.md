@@ -106,18 +106,18 @@ To get started with **Study Flux**, follow these steps:
 
 ### 3. Frontend Setup
 
-    Navigate to the client directory and install dependencies:
+   Navigate to the client directory and install dependencies:
 
-    ```bash
-    cd client
-    npm install
-    ```
+   ```bash
+   cd client
+   npm install
+   ```
 
-    Start the Vite development server:
+   Start the Vite development server:
 
-    ```bash
-    npm run dev
-    ```
+   ```bash
+   npm run dev
+   ```
 
 ### ✅ Notes
 
