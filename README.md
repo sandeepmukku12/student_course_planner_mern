@@ -16,7 +16,7 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 - [🚀 Usage](#-usage)
 - [🏗 App Structure](#-app-structure)
 - [🗂 Key Files](#-key-files)
-- [🛡️ Security & Rules](#-security--rules)
+- [🔐 Security & Rules](#-security--rules)
 - [🏛️ System Architecture](#-system-architecture)
 - [🗃️ Database Schema & Relationships](#-database-schema--relationships)
 - [📈 Future Enhancements](#-future-enhancements)
@@ -200,7 +200,7 @@ Here are the important files in the Study Flux project and their purposes:
 
 ---
 
-## 🛡️ Security & Rules
+## 🔐 Security & Rules
 
 - 🔄 **Cascade Deletion**: When a study group is deleted, all related study sessions are automatically removed from the database.  
 - 🔒 **Protected Routes**: Both frontend routes and backend controllers are secured with JWT authentication.
