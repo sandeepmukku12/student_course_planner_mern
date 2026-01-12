@@ -309,3 +309,11 @@ Study Flux uses a relational approach within MongoDB to handle the complex depen
 
 ---
 
+## 📈 Future Enhancements
+
+- 🔔 **Session Reminders & Notifications**  
+- 💬 **Group Chat**  
+- ⭐ **Course & Study Group Ratings**  
+- 📊 **Advanced Analytics Dashboard**  
+
+---
