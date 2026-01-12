@@ -142,6 +142,7 @@ To get the most out of **Study Flux**, follow this typical user flow:
 
 ## 🏗 App Structure
 
+```bash
 study-flux/
 │
 ├─ client/ # Frontend built with React + Vite
@@ -164,5 +165,6 @@ study-flux/
 | └─ .env # Environment variables (DB URI, JWT secret)
 │
 └─ README.md # Project documentation
+```
 
 ---
