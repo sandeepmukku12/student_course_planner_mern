@@ -175,7 +175,7 @@ To get started with **Study Flux**, follow these steps:
    Create a `.env` file in the `client` directory:
 
    ```env
-   VITE_APP_URL=http://localhost:5173
+   VITE_API_URL=http://localhost:8082/api
    ```
 
    Start the Vite development server:
@@ -216,10 +216,9 @@ study-flux/
 │ │ ├─ components/ # Reusable React components
 | | ├─ dashboard/ # Dashboard layout
 │ │ ├─ pages/ # Page components (Login, Signup, Courses, Study Groups, Planner, Profile, Resources)
-│ │ ├─ routes/ # React Router routes
 │ │ ├─ api/ # API calls using Axios
 │ │ └─ context/ # React context for global state (auth)
-│ └─ .env # Environment variables (DB URI, JWT secret)
+│ └─ .env # Environment variables (VITE_APP_URL)
 |
 ├─ server/ # Backend built with Node.js + Express
 │ ├─ controllers/ # Handles incoming requests
@@ -227,7 +226,7 @@ study-flux/
 │ ├─ routes/ # API route definitions
 │ ├─ services/ # Business logic for controllers
 │ ├─ middleware/ # Authentication & error handling
-| └─ .env # Environment variables (DB URI, JWT secret)
+| └─ .env # Environment variables (PORT, DB URI, JWT secret)
 │
 └─ README.md # Project documentation
 ```
@@ -243,7 +242,7 @@ Here are the important files in the Study Flux project and their purposes:
 - `src/main.jsx` – Entry point for the React + Vite app.  
 - `src/components/` – Reusable UI components like buttons, cards, and modals.  
 - `src/pages/` – Individual pages (Dashboard, Courses, Study Groups, Planner, Profile, Resources).    
-- `src/services/` – Handles API calls to the backend using Axios.  
+- `src/api/` – Handles API calls to the backend using Axios.  
 - `src/context/` – Global state management for auth.  
 
 ### ⚙️ Backend (`server/`)
